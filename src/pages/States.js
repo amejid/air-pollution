@@ -1,8 +1,7 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getStates } from '../redux/states/states';
-import State from '../components/State';
 
 const States = () => {
   const { country } = useParams();
@@ -16,7 +15,9 @@ const States = () => {
   return (
     <div>
       {states.map((state) => (
-        <State key={state} state={state} />
+        <Link key={state} to={`/${country}/${state}`}>
+          {state}
+        </Link>
       ))}
     </div>
   );

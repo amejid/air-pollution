@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Country from '../components/Country';
+import { Link } from 'react-router-dom';
 import { getCountries } from '../redux/countries/countries';
 
 let isInitial = true;
@@ -16,7 +16,11 @@ const Countries = () => {
     }
   }, [dispatch]);
 
-  return countries.map((country) => <Country key={country} country={country} />);
+  return countries.map((country) => (
+    <Link key={country} to={`/${country}`}>
+      {country}
+    </Link>
+  ));
 };
 
 export default Countries;
