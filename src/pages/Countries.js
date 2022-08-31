@@ -17,10 +17,12 @@ const Countries = () => {
   }, [dispatch]);
 
   return (
-    <ul>
+    <ul className="cards">
       {countries.map((country) => (
-        <li key={country}>
-          <Link to={`/${country}`}>{country}</Link>
+        <li key={country} className="cards__item">
+          <Link className="cards__link" to={`/${country}`}>
+            {country}
+          </Link>
         </li>
       ))}
     </ul>
