@@ -16,11 +16,15 @@ const Countries = () => {
     }
   }, [dispatch]);
 
-  return countries.map((country) => (
-    <Link key={country} to={`/${country}`}>
-      {country}
-    </Link>
-  ));
+  return (
+    <ul>
+      {countries.map((country) => (
+        <li key={country}>
+          <Link to={`/${country}`}>{country}</Link>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default Countries;

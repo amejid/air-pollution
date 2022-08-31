@@ -18,13 +18,13 @@ const Cities = () => {
   }, [dispatch, country, stateName]);
 
   return (
-    <div>
+    <ul>
       {cities.map((city) => (
-        <Link key={city} to={`/${country}/${stateName}/${city}`}>
-          {city}
-        </Link>
+        <li key={city}>
+          <Link to={`/${country}/${stateName}/${city}`}>{city}</Link>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
