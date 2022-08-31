@@ -7,8 +7,8 @@ import States from './pages/States';
 const App = () => (
   <Routes>
     <Route path="/" element={<Countries />} />
-    <Route path="/:country/states" element={<States />} />
-    <Route path="/:country/:state/cities" element={<Cities />} />
+    <Route path="/:country" element={<States />} />
+    <Route path="/:country/:state" element={<Cities />} />
     <Route path="/:country/:state/:city" element={<City />} />
   </Routes>
 );
