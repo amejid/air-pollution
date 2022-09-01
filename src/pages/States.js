@@ -1,17 +1,21 @@
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getStates } from '../redux/states/states';
 
+let initial = true;
+
 const States = () => {
-  const { country } = useParams();
   const navigate = useNavigate();
   const states = useSelector((state) => state.states);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getStates(country));
-  }, [dispatch, country]);
+    if (initial) {
+      dispatch(getStates());
+      initial = false;
+    }
+  }, [dispatch]);
 
   return (
     <>
@@ -23,7 +27,7 @@ const States = () => {
       <ul className="cards">
         {states.map((state) => (
           <li className="cards__item" key={state}>
-            <Link className="cards__link" to={`/${country}/${state}`}>
+            <Link className="cards__link" to={`/${state}`}>
               {state}
             </Link>
           </li>

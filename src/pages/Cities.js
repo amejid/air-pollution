@@ -4,19 +4,14 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getCities } from '../redux/cities/cities';
 
 const Cities = () => {
-  const { country, state: stateName } = useParams();
+  const { state: stateName } = useParams();
   const navigate = useNavigate();
   const cities = useSelector((state) => state.cities);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const details = {
-      country,
-      stateName,
-    };
-
-    dispatch(getCities(details));
-  }, [dispatch, country, stateName]);
+    dispatch(getCities(stateName));
+  }, [dispatch, stateName]);
 
   return (
     <>
@@ -28,7 +23,7 @@ const Cities = () => {
       <ul className="cards">
         {cities.map((city) => (
           <li className="cards__item" key={city}>
-            <Link className="cards__link" to={`/${country}/${stateName}/${city}`}>
+            <Link className="cards__link" to={`/${stateName}/${city}`}>
               {city}
             </Link>
           </li>
