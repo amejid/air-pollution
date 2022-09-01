@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_KEY, API_URL } from '../../api/APIConfig';
 
-const GET_METRICS = 'pollutionApp/country/state/city/GET_METRICS';
+const GET_METRICS = 'pollutionApp/state/city/GET_METRICS';
 
-const metricsReducer = (state = {}, action) => {
+const metricsReducer = (state = { current: { weather: {}, pollution: {} } }, action) => {
   switch (action.type) {
     case `${GET_METRICS}/fulfilled`:
       return action.payload;
@@ -13,10 +13,10 @@ const metricsReducer = (state = {}, action) => {
 };
 
 export const getMetrics = createAsyncThunk(GET_METRICS, async (detailData) => {
-  const { country, stateName, city } = detailData;
+  const { stateName, city } = detailData;
 
   const response = await fetch(
-    `${API_URL}city?city=${city}&state=${stateName}&country=${country}&${API_KEY}`,
+    `${API_URL}city?city=${city}&state=${stateName}&country=USA&${API_KEY}`,
   );
   const data = await response.json();
 
